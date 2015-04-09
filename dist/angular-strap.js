@@ -974,7 +974,7 @@ angular.module('mgcrea.ngStrap.datepicker', [
       iconRight: 'glyphicon glyphicon-chevron-right'
     };
 
-    this.$get = ["$window", "$document", "$rootScope", "$sce", "$dateFormatter", "datepickerViews", "$tooltip", "$timeout", function($window, $document, $rootScope, $sce, $dateFormatter, datepickerViews, $tooltip, $timeout) {
+    this.$get = ["$window", "$document", "$rootScope", "$sce", "$dateFormatter", "datepickerViews", "$bsTooltip", "$timeout", function($window, $document, $rootScope, $sce, $dateFormatter, datepickerViews, $bsTooltip, $timeout) {
 
       var bodyEl = angular.element($window.document.body);
       var isNative = /(ip(a|o)d|iphone|android)/ig.test($window.navigator.userAgent);
@@ -983,7 +983,7 @@ angular.module('mgcrea.ngStrap.datepicker', [
 
       function DatepickerFactory(element, controller, config) {
 
-        var $datepicker = $tooltip(element, angular.extend({}, defaults, config));
+        var $datepicker = $bsTooltip(element, angular.extend({}, defaults, config));
         var parentScope = config.scope;
         var options = $datepicker.$options;
         var scope = $datepicker.$scope;
@@ -1589,7 +1589,7 @@ angular.module('mgcrea.ngStrap.dropdown', ['mgcrea.ngStrap.tooltip'])
       delay: 0
     };
 
-    this.$get = ["$window", "$rootScope", "$tooltip", "$timeout", function($window, $rootScope, $tooltip, $timeout) {
+    this.$get = ["$window", "$rootScope", "$bsTooltip", "$timeout", function($window, $rootScope, $bsTooltip, $timeout) {
 
       var bodyEl = angular.element($window.document.body);
       var matchesSelector = Element.prototype.matchesSelector || Element.prototype.webkitMatchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector;
@@ -1602,7 +1602,7 @@ angular.module('mgcrea.ngStrap.dropdown', ['mgcrea.ngStrap.tooltip'])
         var options = angular.extend({}, defaults, config);
         var scope = $dropdown.$scope = options.scope && options.scope.$new() || $rootScope.$new();
 
-        $dropdown = $tooltip(element, options);
+        $dropdown = $bsTooltip(element, options);
         var parentEl = element.parent();
 
         // Protected methods
@@ -2877,14 +2877,14 @@ angular.module('mgcrea.ngStrap.popover', ['mgcrea.ngStrap.tooltip'])
       autoClose: false
     };
 
-    this.$get = ["$tooltip", function($tooltip) {
+    this.$get = ["$bsTooltip", function($bsTooltip) {
 
       function PopoverFactory(element, config) {
 
         // Common vars
         var options = angular.extend({}, defaults, config);
 
-        var $popover = $tooltip(element, options);
+        var $popover = $bsTooltip(element, options);
 
         // Support scope as string options [/*title, */content]
         if(options.content) {
@@ -3248,7 +3248,7 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
       iconCheckmark: 'glyphicon glyphicon-ok'
     };
 
-    this.$get = ["$window", "$document", "$rootScope", "$tooltip", "$timeout", function($window, $document, $rootScope, $tooltip, $timeout) {
+    this.$get = ["$window", "$document", "$rootScope", "$bsTooltip", "$timeout", function($window, $document, $rootScope, $bsTooltip, $timeout) {
 
       var bodyEl = angular.element($window.document.body);
       var isNative = /(ip(a|o)d|iphone|android)/ig.test($window.navigator.userAgent);
@@ -3265,7 +3265,7 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
         // when binded to interpolated value
         options.sort = options.sort.toString().match(/true|1/i);
 
-        $select = $tooltip(element, options);
+        $select = $bsTooltip(element, options);
         var scope = $select.$scope;
 
         scope.$matches = [];
@@ -3771,7 +3771,7 @@ angular.module('mgcrea.ngStrap.timepicker', [
       arrowBehavior: 'pager'
     };
 
-    this.$get = ["$window", "$document", "$rootScope", "$sce", "$dateFormatter", "$tooltip", "$timeout", function($window, $document, $rootScope, $sce, $dateFormatter, $tooltip, $timeout) {
+    this.$get = ["$window", "$document", "$rootScope", "$sce", "$dateFormatter", "$bsTooltip", "$timeout", function($window, $document, $rootScope, $sce, $dateFormatter, $bsTooltip, $timeout) {
 
       var bodyEl = angular.element($window.document.body);
       var isNative = /(ip(a|o)d|iphone|android)/ig.test($window.navigator.userAgent);
@@ -3780,7 +3780,7 @@ angular.module('mgcrea.ngStrap.timepicker', [
 
       function timepickerFactory(element, controller, config) {
 
-        var $timepicker = $tooltip(element, angular.extend({}, defaults, config));
+        var $timepicker = $bsTooltip(element, angular.extend({}, defaults, config));
         var parentScope = config.scope;
         var options = $timepicker.$options;
         var scope = $timepicker.$scope;
@@ -4257,7 +4257,7 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
       comparator: ''
     };
 
-    this.$get = ["$window", "$rootScope", "$tooltip", "$timeout", function($window, $rootScope, $tooltip, $timeout) {
+    this.$get = ["$window", "$rootScope", "$bsTooltip", "$timeout", function($window, $rootScope, $bsTooltip, $timeout) {
 
       var bodyEl = angular.element($window.document.body);
 
@@ -4268,7 +4268,7 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
         // Common vars
         var options = angular.extend({}, defaults, config);
 
-        $typeahead = $tooltip(element, options);
+        $typeahead = $bsTooltip(element, options);
         var parentScope = config.scope;
         var scope = $typeahead.$scope;
 
@@ -4510,7 +4510,7 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
 // Source: tooltip.js
 angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
 
-  .provider('$tooltip', function() {
+  .provider('$bsTooltip', function() {
 
     var defaults = this.defaults = {
       animation: 'am-fade',
@@ -4546,13 +4546,13 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
 
       function TooltipFactory(element, config) {
 
-        var $tooltip = {};
+        var $bsTooltip = {};
 
         // Common vars
         var nodeName = element[0].nodeName.toLowerCase();
-        var options = $tooltip.$options = angular.extend({}, defaults, config);
-        $tooltip.$promise = fetchTemplate(options.template);
-        var scope = $tooltip.$scope = options.scope && options.scope.$new() || $rootScope.$new();
+        var options = $bsTooltip.$options = angular.extend({}, defaults, config);
+        $bsTooltip.$promise = fetchTemplate(options.template);
+        var scope = $bsTooltip.$scope = options.scope && options.scope.$new() || $rootScope.$new();
         if(options.delay && angular.isString(options.delay)) {
           var split = options.delay.split(',').map(parseFloat);
           options.delay = split.length > 1 ? {show: split[0], hide: split[1]} : split[0];
@@ -4561,7 +4561,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
         // store $id to identify the triggering element in events
         // give priority to options.id, otherwise, try to use
         // element id if defined
-        $tooltip.$id = options.id || element.attr('id') || '';
+        $bsTooltip.$id = options.id || element.attr('id') || '';
 
         // Support scope as string options
         if(options.title) {
@@ -4571,33 +4571,33 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
         // Provide scope helpers
         scope.$setEnabled = function(isEnabled) {
           scope.$$postDigest(function() {
-            $tooltip.setEnabled(isEnabled);
+            $bsTooltip.setEnabled(isEnabled);
           });
         };
         scope.$hide = function() {
           scope.$$postDigest(function() {
-            $tooltip.hide();
+            $bsTooltip.hide();
           });
         };
         scope.$show = function() {
           scope.$$postDigest(function() {
-            $tooltip.show();
+            $bsTooltip.show();
           });
         };
         scope.$toggle = function() {
           scope.$$postDigest(function() {
-            $tooltip.toggle();
+            $bsTooltip.toggle();
           });
         };
         // Publish isShown as a protected var on scope
-        $tooltip.$isShown = scope.$isShown = false;
+        $bsTooltip.$isShown = scope.$isShown = false;
 
         // Private vars
         var timeout, hoverState;
 
         // Support contentTemplate option
         if(options.contentTemplate) {
-          $tooltip.$promise = $tooltip.$promise.then(function(template) {
+          $bsTooltip.$promise = $bsTooltip.$promise.then(function(template) {
             var templateEl = angular.element(template);
             return fetchTemplate(options.contentTemplate)
             .then(function(contentTemplate) {
@@ -4611,16 +4611,16 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
 
         // Fetch, compile then initialize tooltip
         var tipLinker, tipElement, tipTemplate, tipContainer, tipScope;
-        $tooltip.$promise.then(function(template) {
+        $bsTooltip.$promise.then(function(template) {
           if(angular.isObject(template)) template = template.data;
           if(options.html) template = template.replace(htmlReplaceRegExp, 'ng-bind-html="');
           template = trim.apply(template);
           tipTemplate = template;
           tipLinker = $compile(template);
-          $tooltip.init();
+          $bsTooltip.init();
         });
 
-        $tooltip.init = function() {
+        $bsTooltip.init = function() {
 
           // Options: delay
           if (options.delay && angular.isNumber(options.delay)) {
@@ -4655,13 +4655,13 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
           // Options: show
           if(options.show) {
             scope.$$postDigest(function() {
-              options.trigger === 'focus' ? element[0].focus() : $tooltip.show();
+              options.trigger === 'focus' ? element[0].focus() : $bsTooltip.show();
             });
           }
 
         };
 
-        $tooltip.destroy = function() {
+        $bsTooltip.destroy = function() {
 
           // Unbind events
           unbindTriggerEvents();
@@ -4674,24 +4674,24 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
 
         };
 
-        $tooltip.enter = function() {
+        $bsTooltip.enter = function() {
 
           clearTimeout(timeout);
           hoverState = 'in';
           if (!options.delay || !options.delay.show) {
-            return $tooltip.show();
+            return $bsTooltip.show();
           }
 
           timeout = setTimeout(function() {
-            if (hoverState ==='in') $tooltip.show();
+            if (hoverState ==='in') $bsTooltip.show();
           }, options.delay.show);
 
         };
 
-        $tooltip.show = function() {
-          if (!options.bsEnabled || $tooltip.$isShown) return;
+        $bsTooltip.show = function() {
+          if (!options.bsEnabled || $bsTooltip.$isShown) return;
 
-          scope.$emit(options.prefixEvent + '.show.before', $tooltip);
+          scope.$emit(options.prefixEvent + '.show.before', $bsTooltip);
           var parent, after;
           if (options.container) {
             parent = tipContainer;
@@ -4709,8 +4709,8 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
           // Hide any existing tipElement
           if(tipElement) destroyTipElement();
           // Fetch a cloned element linked from template
-          tipScope = $tooltip.$scope.$new();
-          tipElement = $tooltip.$element = tipLinker(tipScope, function(clonedElement, scope) {});
+          tipScope = $bsTooltip.$scope.$new();
+          tipElement = $bsTooltip.$element = tipLinker(tipScope, function(clonedElement, scope) {});
 
           // Set the initial positioning.  Make the tooltip invisible
           // so IE doesn't try to focus on it off screen.
@@ -4728,11 +4728,11 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
           // to be off due to the transforms.
           after ? after.after(tipElement) : parent.prepend(tipElement);
 
-          $tooltip.$isShown = scope.$isShown = true;
+          $bsTooltip.$isShown = scope.$isShown = true;
           safeDigest(scope);
 
           // Now, apply placement
-          $tooltip.$applyPlacement();
+          $bsTooltip.$applyPlacement();
 
           // Once placed, animate it.
           // Support v1.3+ $animate
@@ -4749,7 +4749,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
           // Bind events
           if(options.keyboard) {
             if(options.trigger !== 'focus') {
-              $tooltip.focus();
+              $bsTooltip.focus();
             }
             bindKeyboardEvents();
           }
@@ -4761,19 +4761,19 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
         };
 
         function enterAnimateCallback() {
-          scope.$emit(options.prefixEvent + '.show', $tooltip);
+          scope.$emit(options.prefixEvent + '.show', $bsTooltip);
         }
 
-        $tooltip.leave = function() {
+        $bsTooltip.leave = function() {
 
           clearTimeout(timeout);
           hoverState = 'out';
           if (!options.delay || !options.delay.hide) {
-            return $tooltip.hide();
+            return $bsTooltip.hide();
           }
           timeout = setTimeout(function () {
             if (hoverState === 'out') {
-              $tooltip.hide();
+              $bsTooltip.hide();
             }
           }, options.delay.hide);
 
@@ -4781,10 +4781,10 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
 
         var _blur;
         var _tipToHide;
-        $tooltip.hide = function(blur) {
+        $bsTooltip.hide = function(blur) {
 
-          if(!$tooltip.$isShown) return;
-          scope.$emit(options.prefixEvent + '.hide.before', $tooltip);
+          if(!$bsTooltip.$isShown) return;
+          scope.$emit(options.prefixEvent + '.hide.before', $bsTooltip);
 
           // store blur value for leaveAnimateCallback to use
           _blur = blur;
@@ -4798,7 +4798,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
           var promise = $animate.leave(tipElement, leaveAnimateCallback);
           if(promise && promise.then) promise.then(leaveAnimateCallback);
 
-          $tooltip.$isShown = scope.$isShown = false;
+          $bsTooltip.$isShown = scope.$isShown = false;
           safeDigest(scope);
 
           // Unbind events
@@ -4812,7 +4812,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
         };
 
         function leaveAnimateCallback() {
-          scope.$emit(options.prefixEvent + '.hide', $tooltip);
+          scope.$emit(options.prefixEvent + '.hide', $bsTooltip);
 
           // check if current tipElement still references
           // the same element when hide was called
@@ -4827,25 +4827,25 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
           }
         }
 
-        $tooltip.toggle = function() {
-          $tooltip.$isShown ? $tooltip.leave() : $tooltip.enter();
+        $bsTooltip.toggle = function() {
+          $bsTooltip.$isShown ? $bsTooltip.leave() : $bsTooltip.enter();
         };
 
-        $tooltip.focus = function() {
+        $bsTooltip.focus = function() {
           tipElement[0].focus();
         };
 
-        $tooltip.setEnabled = function(isEnabled) {
+        $bsTooltip.setEnabled = function(isEnabled) {
           options.bsEnabled = isEnabled;
         };
 
-        $tooltip.setViewport = function(viewport) {
+        $bsTooltip.setViewport = function(viewport) {
           options.viewport = viewport;
         };
 
         // Protected methods
 
-        $tooltip.$applyPlacement = function() {
+        $bsTooltip.$applyPlacement = function() {
           if(!tipElement) return;
 
           // Determine if we're doing an auto or normal placement
@@ -4901,25 +4901,25 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
           applyPlacement(tipPosition, placement);
         };
 
-        $tooltip.$onKeyUp = function(evt) {
-          if (evt.which === 27 && $tooltip.$isShown) {
-            $tooltip.hide();
+        $bsTooltip.$onKeyUp = function(evt) {
+          if (evt.which === 27 && $bsTooltip.$isShown) {
+            $bsTooltip.hide();
             evt.stopPropagation();
           }
         };
 
-        $tooltip.$onFocusKeyUp = function(evt) {
+        $bsTooltip.$onFocusKeyUp = function(evt) {
           if (evt.which === 27) {
             element[0].blur();
             evt.stopPropagation();
           }
         };
 
-        $tooltip.$onFocusElementMouseDown = function(evt) {
+        $bsTooltip.$onFocusElementMouseDown = function(evt) {
           evt.preventDefault();
           evt.stopPropagation();
           // Some browsers do not auto-focus buttons (eg. Safari)
-          $tooltip.$isShown ? element[0].blur() : element[0].focus();
+          $bsTooltip.$isShown ? element[0].blur() : element[0].focus();
         };
 
         // bind/unbind events
@@ -4927,11 +4927,11 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
           var triggers = options.trigger.split(' ');
           angular.forEach(triggers, function(trigger) {
             if(trigger === 'click') {
-              element.on('click', $tooltip.toggle);
+              element.on('click', $bsTooltip.toggle);
             } else if(trigger !== 'manual') {
-              element.on(trigger === 'hover' ? 'mouseenter' : 'focus', $tooltip.enter);
-              element.on(trigger === 'hover' ? 'mouseleave' : 'blur', $tooltip.leave);
-              nodeName === 'button' && trigger !== 'hover' && element.on(isTouch ? 'touchstart' : 'mousedown', $tooltip.$onFocusElementMouseDown);
+              element.on(trigger === 'hover' ? 'mouseenter' : 'focus', $bsTooltip.enter);
+              element.on(trigger === 'hover' ? 'mouseleave' : 'blur', $bsTooltip.leave);
+              nodeName === 'button' && trigger !== 'hover' && element.on(isTouch ? 'touchstart' : 'mousedown', $bsTooltip.$onFocusElementMouseDown);
             }
           });
         }
@@ -4941,28 +4941,28 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
           for (var i = triggers.length; i--;) {
             var trigger = triggers[i];
             if(trigger === 'click') {
-              element.off('click', $tooltip.toggle);
+              element.off('click', $bsTooltip.toggle);
             } else if(trigger !== 'manual') {
-              element.off(trigger === 'hover' ? 'mouseenter' : 'focus', $tooltip.enter);
-              element.off(trigger === 'hover' ? 'mouseleave' : 'blur', $tooltip.leave);
-              nodeName === 'button' && trigger !== 'hover' && element.off(isTouch ? 'touchstart' : 'mousedown', $tooltip.$onFocusElementMouseDown);
+              element.off(trigger === 'hover' ? 'mouseenter' : 'focus', $bsTooltip.enter);
+              element.off(trigger === 'hover' ? 'mouseleave' : 'blur', $bsTooltip.leave);
+              nodeName === 'button' && trigger !== 'hover' && element.off(isTouch ? 'touchstart' : 'mousedown', $bsTooltip.$onFocusElementMouseDown);
             }
           }
         }
 
         function bindKeyboardEvents() {
           if(options.trigger !== 'focus') {
-            tipElement.on('keyup', $tooltip.$onKeyUp);
+            tipElement.on('keyup', $bsTooltip.$onKeyUp);
           } else {
-            element.on('keyup', $tooltip.$onFocusKeyUp);
+            element.on('keyup', $bsTooltip.$onFocusKeyUp);
           }
         }
 
         function unbindKeyboardEvents() {
           if(options.trigger !== 'focus') {
-            tipElement.off('keyup', $tooltip.$onKeyUp);
+            tipElement.off('keyup', $bsTooltip.$onKeyUp);
           } else {
-            element.off('keyup', $tooltip.$onFocusKeyUp);
+            element.off('keyup', $bsTooltip.$onFocusKeyUp);
           }
         }
 
@@ -4975,7 +4975,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
             tipElement.on('click', stopEventPropagation);
 
             // Hide when clicking outside tooltip
-            $body.on('click', $tooltip.hide);
+            $body.on('click', $bsTooltip.hide);
 
             _autoCloseEventsBinded = true;
           }, 0, false);
@@ -4984,7 +4984,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
         function unbindAutoCloseEvents() {
           if (_autoCloseEventsBinded) {
             tipElement.off('click', stopEventPropagation);
-            $body.off('click', $tooltip.hide);
+            $body.off('click', $bsTooltip.hide);
             _autoCloseEventsBinded = false;
           }
         }
@@ -5180,7 +5180,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
           // Cancel pending callbacks
           clearTimeout(timeout);
 
-          if($tooltip.$isShown && tipElement !== null) {
+          if($bsTooltip.$isShown && tipElement !== null) {
             if(options.autoClose) {
               unbindAutoCloseEvents();
             }
@@ -5197,11 +5197,11 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
 
           if(tipElement) {
             tipElement.remove();
-            tipElement = $tooltip.$element = null;
+            tipElement = $bsTooltip.$element = null;
           }
         }
 
-        return $tooltip;
+        return $bsTooltip;
 
       }
 
@@ -5229,7 +5229,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
 
   })
 
-  .directive('bsTooltip', ["$window", "$location", "$sce", "$tooltip", "$$rAF", function($window, $location, $sce, $tooltip, $$rAF) {
+  .directive('bsTooltip', ["$window", "$location", "$sce", "$bsTooltip", "$$rAF", function($window, $location, $sce, $bsTooltip, $$rAF) {
 
     return {
       restrict: 'EAC',
@@ -5298,7 +5298,7 @@ angular.module('mgcrea.ngStrap.tooltip', ['mgcrea.ngStrap.helpers.dimensions'])
         });
 
         // Initialize popover
-        var tooltip = $tooltip(element, options);
+        var tooltip = $bsTooltip(element, options);
 
         // Garbage collection
         scope.$on('$destroy', function() {
